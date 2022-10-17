@@ -12,11 +12,11 @@ public class SetupMyWebDriver {
 
     public SetupMyWebDriver() {
         String osName = System.getProperty("os.name").toLowerCase();
-        switch (osName) {
-            case "win" ->
-                    System.setProperty("webdriver.chrome.driver", "src/test/resources/webdrivers/chromedriver.exe");
-            case "mac" ->
-                    System.setProperty("webdriver.chrome.driver", "src/test/resources/webdrivers/chromedriver");
+        String webdriversPath = "src/test/resources/webdrivers/";
+        if(osName.contains("windows")){
+            System.setProperty("webdriver.chrome.driver", webdriversPath + "chromedriver.exe");
+        }else if(osName.contains("macos")){
+            System.setProperty("webdriver.chrome.driver", webdriversPath + "chromedriver");
         }
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--window-size=1920,1080");

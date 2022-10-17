@@ -10,7 +10,7 @@ I've created this repository with the objective to learn about web test automati
 ## Your Computer Setup
 
 Previous software to be installed on your computer.
-- Java (At least 13).
+- Java 19.
 - Maven.
 - IDE (Preferred Intellij).
 
@@ -19,6 +19,10 @@ Previous software to be installed on your computer.
 1. Clone this repository.
 2. Open the terminal and go to the project root folder.
 3. Run `mvn test`.
+
+PS: Check if your maven is using the jdk-19 (mvn --version).\
+PS2: Check is the browser version of your machine\
+is the same version of the chromedriver inside the project /resources.
 
 ---
 
