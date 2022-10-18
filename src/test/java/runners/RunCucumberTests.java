@@ -6,8 +6,7 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
         glue = {"steps"},
-        features = "src/test/resources/features",
-        plugin = "json:target/cucumber-report.json")
+        features = "src/test/resources/features")
 public class RunCucumberTests extends AbstractTestNGCucumberTests {
 
     @Override
