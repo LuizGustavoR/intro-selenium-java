@@ -26,6 +26,20 @@ is the same version of the chromedriver inside the project /resources.
 
 ---
 
+## Allure Reports
+
+After running `mvn test` you have two options to create the report.
+
+1. Run `mvn allure:serve`.\
+   The report will be generated into the temp folder\
+   where a webserver with the results will start.\
+   The webserver has a default timeout of 1 hour.
+
+2. Run `mvn allure:report`.\
+   Report will be generated tо directory: `target/site/allure-maven/index.html`
+
+---
+
 # Project made with:
 
 [![Java Badge](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)](https://www.java.com/)
