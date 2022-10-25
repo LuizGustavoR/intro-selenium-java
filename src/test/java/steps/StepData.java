@@ -2,20 +2,28 @@ package steps;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
+import io.qameta.allure.Allure;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 import pages.ResultPage;
 import setup.SetupMyWebDriver;
 
+import java.io.ByteArrayInputStream;
+
 public class StepData {
 
+    private Scenario scenario;
     private WebDriver webDriver;
     private HomePage homePage;
     private ResultPage resultPage;
 
     @Before
-    public void setup(){
+    public void setup(Scenario scenario){
+        this.scenario = scenario;
         webDriver = new SetupMyWebDriver().getWebDriver();
         homePage = new HomePage(webDriver);
         resultPage = new ResultPage(webDriver);
@@ -28,22 +36,14 @@ public class StepData {
 
     @After
     public void tearDown(){
+        screenshot();
         webDriver.quit();
     }
 
-//    @AfterMethod
-//    public void recordFailure(ITestResult result){
-//        if(ITestResult.FAILURE == result.getStatus())
-//        {
-//            var camera = (TakesScreenshot)webDriver();
-//            File screenshot = camera.getScreenshotAs(OutputType.FILE);
-//            try{
-//                Files.move(screenshot, new File("resources/screenshots/" + result.getName() + ".png"));
-//            }catch(IOException e){
-//                e.printStackTrace();
-//            }
-//        }
-//    }
+    private void screenshot(){
+        Allure.addAttachment(scenario.getName() + "+" + System.currentTimeMillis(),
+                new ByteArrayInputStream(((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES)));
+    }
 
     public WebDriver getWebDriver() {
         return webDriver;
