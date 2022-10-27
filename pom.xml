@@ -33,16 +33,18 @@
                             <value>2</value>
                         </property>
                     </properties>
-                    <!-- Allure Report and testng setup -->
+                    <!-- Allure Report and cucumber setup -->
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                        -Dcucumber.options="--plugin io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm"
                     </argLine>
-                    <!-- Create the allure results inside the target folder -->
                     <systemPropertyVariables>
+                        <!-- Create the allure results inside the target folder -->
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
                     </systemPropertyVariables>
                 </configuration>
                 <dependencies>
+                    <!-- More allure stuff -->
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjweaver</artifactId>
@@ -67,9 +69,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>3.0.0-M7</maven.surefire.plugin.version>
-        <cucumber.version>7.8.1</cucumber.version>
+        <cucumber.version>6.11.0</cucumber.version>
         <slf4j.version>2.0.3</slf4j.version>
-        <aspectj.version>1.9.4</aspectj.version>
+        <aspectj.version>1.9.9.1</aspectj.version>
+        <allure.version>2.19.0</allure.version>
     </properties>
 
     <dependencies>
@@ -133,8 +136,8 @@
 
         <dependency>
             <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-testng</artifactId>
-            <version>2.19.0</version>
+            <artifactId>allure-cucumber6-jvm</artifactId>
+            <version>${allure.version}</version>
         </dependency>
 
     </dependencies>
