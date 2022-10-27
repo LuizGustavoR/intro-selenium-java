@@ -3,6 +3,7 @@ package setup;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.time.Duration;
 
@@ -11,6 +12,8 @@ public class SetupMyWebDriver {
     private WebDriver webDriver;
 
     public SetupMyWebDriver() {
+
+        // Setup chromedriver os version
         String osName = System.getProperty("os.name").toLowerCase();
         String webdriversPath = "src/test/resources/webdrivers/";
         if(osName.contains("windows")){
@@ -18,12 +21,14 @@ public class SetupMyWebDriver {
         }else if(osName.contains("macos")){
             System.setProperty("webdriver.chrome.driver", webdriversPath + "chromedriver");
         }
+
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--window-size=1920,1080");
         options.addArguments("disable-infobars");
         options.setHeadless(false);
         webDriver = new ChromeDriver(options);
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(6));
+
     }
 
     public WebDriver getWebDriver() {

@@ -5,6 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
+        plugin = {"pretty", "io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm"},
         glue = {"steps"},
         features = "src/test/resources/features")
 public class RunCucumberTests extends AbstractTestNGCucumberTests {
