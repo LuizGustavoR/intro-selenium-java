@@ -41,6 +41,9 @@
                     <systemPropertyVariables>
                         <!-- Create the allure results inside the target folder -->
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                        <!-- Remote tests configuration -->
+                        <test.remote>false</test.remote>
+                        <url.remote>http://127.0.0.1:4444/wd/hub</url.remote>
                     </systemPropertyVariables>
                 </configuration>
                 <dependencies>

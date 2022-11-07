@@ -13,6 +13,7 @@ import pages.ResultPage;
 import setup.SetupMyWebDriver;
 
 import java.io.ByteArrayInputStream;
+import java.net.MalformedURLException;
 
 public class StepData {
 
@@ -22,7 +23,7 @@ public class StepData {
     private ResultPage resultPage;
 
     @Before
-    public void setup(Scenario scenario){
+    public void setup(Scenario scenario) throws MalformedURLException {
         this.scenario = scenario;
         webDriver = new SetupMyWebDriver().getWebDriver();
         homePage = new HomePage(webDriver);
@@ -55,6 +56,10 @@ public class StepData {
 
     public ResultPage getResultPage() {
         return resultPage;
+    }
+
+    public Scenario getScenario() {
+        return scenario;
     }
 
 }
