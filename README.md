@@ -1,7 +1,7 @@
 # intro-selenium-java
 
 I've created this repository with the objective to learn about web test automation projects using:
-- Java, Selenium, Cucumber, TestNG and Maven.
+- Java, Selenium, Cucumber, TestNG, Maven and Docker.
 
 ---
 
@@ -13,6 +13,7 @@ Previous software to be installed on your computer.
 - Java 19.
 - Maven.
 - IDE (Preferred Intellij).
+- Docker Desktop.
 
 ## Project Setup
 
@@ -39,6 +40,34 @@ After running `mvn test` you have two options to create the report.
    Report will be generated tо directory: `target/site/allure-maven/index.html`
 
 ---
+
+## Docker Setup
+
+Scale tests using docker.\
+(selenium/hub, selenium/node-chrome, selenium/node-firefox).
+
+1. Open the terminal and go to your project root folder.
+2. Choose the `docker-compose` directory accordingly to the architecture your docker containers will be run.
+   1. If architecture `x86-64` go to folder: `cd /docker/intel-amd/`
+   2. If architecture `arm64` go to folder: `cd /docker/arm64/`
+3. Run the command below to spin up the nodes:\
+   `docker-compose up -d`
+4. Go back to the project root folder\
+   `intro-selenium-java/`\
+   and run the maven tests:\
+   `mvn test -Dtest.remote=true`
+5. To shut down the docker nodes\
+   go back inside your specific docker folder\
+   `cd /docker/intel-amd/` or `cd /docker/arm64/`\
+   and shut down the nodes with the command\
+   `docker-compose down`.
+
+PS: The `docker pull` command is not needed.\
+If you haven't pulled the images yet,\
+docker will do it for you while spinning up the images.
+
+PS: Macos M1
+https://hub.docker.com/u/seleniarm
 
 # Project made with:
 

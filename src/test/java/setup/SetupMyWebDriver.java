@@ -5,13 +5,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 
 public class SetupMyWebDriver {
 
     private WebDriver webDriver;
 
-    public SetupMyWebDriver() {
+    public SetupMyWebDriver() throws MalformedURLException {
 
         // Setup chromedriver os version
         String osName = System.getProperty("os.name").toLowerCase();
@@ -26,7 +28,18 @@ public class SetupMyWebDriver {
         options.addArguments("--window-size=1920,1080");
         options.addArguments("disable-infobars");
         options.setHeadless(false);
-        webDriver = new ChromeDriver(options);
+
+        // Setup if webdriver will run remote or local
+        boolean isTestRemote = Boolean.getBoolean("test.remote");
+        String urlRemote = System.getProperty("url.remote");
+        if(isTestRemote){
+            options.addArguments("--no-sandbox");
+            options.addArguments("--headless");
+            webDriver = new RemoteWebDriver(new URL(urlRemote), options);
+        }else{
+            webDriver = new ChromeDriver(options);
+        }
+
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(6));
 
     }
